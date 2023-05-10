@@ -16,29 +16,14 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 const alphabet = '0123456789';
 const nanoid = customAlphabet(alphabet, 10);
 
-/*
-//chart setup
-const chart_data = {
-	labels: ['Red', 'Yellow', 'Blue', 'Green', 'Purple', 'Orange'],
-  	datasets: [
-    	{
-      		data: [10, 10, 10, 10, 10, 50],
-      		backgroundColor: ['red', 'yellow', 'blue', 'green', 'purple', 'orange'],
-      		hoverBackgroundColor: ['red', 'yellow', 'blue', 'green', 'purple', 'orange']
-    	}
-  	]
-  };
-
-const options = {
-  	maintainAspectRatio: true
-};
-*/
 
 //color and emoji setup
 function ColorBlock(props) {
 	const handleClick = () => {
 		localStorage.setItem('color', props.color);
-		props.send_vote(localStorage.getItem('user_id'), props.color);
+		const uIdString = localStorage.getItem('user');
+		const uIdInt = parseInt(uIdString, 10);
+		props.send_vote(uIdInt, props.color);
 		props.click();
 	}
 	const styles = {
@@ -63,7 +48,19 @@ function ColorBlock(props) {
 
 };
 
+//test function
+function useInterval(callback, delay) {
+  const [intervalId, setIntervalId] = useState(null);
 
+  useEffect(() => {
+    const id = setInterval(callback, delay);
+    setIntervalId(id);
+
+    return () => clearInterval(id);
+  }, [callback, delay]);
+
+  return intervalId;
+}
 
 
 //main application
@@ -99,7 +96,7 @@ function App() {
 
   	}, [showColor]);
 
-	//HTTP Requests
+//HTTP Requests
 	//POST new vote
   	const {mutate, isLoading, data, error } = useMutation(async (newItem) => {
     	const response = await fetch('https://api.cornidez.com/new_vote', {
@@ -114,9 +111,10 @@ function App() {
 
   	const AddItem = (id, vote) => {
     	const newItem = {
-      		user_id: parseInt(id, 10),
+      		user_id: id,
       		color: vote,
     	};
+		console.log(newItem);
     	mutate(newItem);
 	};
 
@@ -124,7 +122,8 @@ function App() {
 	const get_query = useQuery('results', async () => {
     	const response = await fetch('https://api.cornidez.com/results');
     	return response.json();
-  	});
+  	}, { refetchInterval: 5000, });
+	
 
 	//adjust response json
 	const colors = ['red', 'yellow', 'blue', 'green', 'purple', 'orange'];
