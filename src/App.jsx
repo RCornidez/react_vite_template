@@ -48,20 +48,6 @@ function ColorBlock(props) {
 
 };
 
-//test function
-function useInterval(callback, delay) {
-  const [intervalId, setIntervalId] = useState(null);
-
-  useEffect(() => {
-    const id = setInterval(callback, delay);
-    setIntervalId(id);
-
-    return () => clearInterval(id);
-  }, [callback, delay]);
-
-  return intervalId;
-}
-
 
 //main application
 function App() {
@@ -97,7 +83,7 @@ function App() {
   	}, [showColor]);
 
 //HTTP Requests
-	//POST new vote
+	//POST - new vote
   	const {mutate, isLoading, data, error } = useMutation(async (newItem) => {
     	const response = await fetch('https://api.cornidez.com/new_vote', {
       		method: 'POST',
@@ -118,14 +104,14 @@ function App() {
     	mutate(newItem);
 	};
 
-	//GET results
+	//GET - voting results
 	const get_query = useQuery('results', async () => {
     	const response = await fetch('https://api.cornidez.com/results');
     	return response.json();
   	}, { refetchInterval: 5000, });
 	
 
-	//adjust response json
+	//adjust results to be usable
 	const colors = ['red', 'yellow', 'blue', 'green', 'purple', 'orange'];
 	const sample = [0, 0, 0, 0, 0, 0];	
 	const counts = colors.map((color) => {
