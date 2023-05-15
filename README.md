@@ -3,8 +3,7 @@
 ## How to run in development
 Install Node.js and Node Package Manager:
 ```
-sudo apt-get install nodejs
-sudo apt-get install npm
+sudo apt-get install nodejs npm
 ```
 
 Clone repository:
