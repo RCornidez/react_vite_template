@@ -52,8 +52,38 @@ dist/
 └── vite.svg
 ```
 
+## Install Nginx
+```
+sudo apt-get install nginx
+```
+### Configure default file in sites-avalable folder.
+```
+sudo vi /etc/nginx/sites-available/default
+```
+Input the following, adjust the directories and file names as needed:
 
+```
+server {
+        listen 443 ssl;
+        ssl_certificate /etc/nginx/certificates/color.cornidez.com.pem;
+        ssl_certificate_key /etc/nginx/certificates/color.cornidez.com.key;
 
+        server_name color.cornidez.com;
+        location / {
+                root /var/www/front;
+                index.html;
+        }
+
+        access_log /var/log/nginx/access.log;
+        error_log  /var/log/nginx/error_log  crit;
+}
+```
+### Test and restart service
+```
+sudo nginx -t
+sudo service nginx restart
+sudo service nginx status
+```
 
 
 
