@@ -100,7 +100,7 @@ sudo service nginx status
 
 ### verify accessibility by visiting the site:
 
-[color.cornidez.com](https://www.color.cornidez.com)
+[color.cornidez.com](https://color.cornidez.com)
 
 
 
