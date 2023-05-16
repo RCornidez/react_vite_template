@@ -82,7 +82,7 @@ server {
         server_name color.cornidez.com;
         location / {
                 root /var/www/front;
-                index.html;
+                index index.html;
         }
 
         access_log /var/log/nginx/access.log;
