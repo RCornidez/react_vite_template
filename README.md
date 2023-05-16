@@ -20,11 +20,11 @@ sudo apt-get install npm
 
 Clone repository:
 ```
-git clone [address]
+git clone https://github.com/RCornidez/react_vite_template.git
 ```
 OR
 ```
-git clone [address]
+git clone git@github.com:RCornidez/react_vite_template.git
 ```
 ***Navigate within the folder***
 
@@ -95,6 +95,12 @@ sudo nginx -t
 sudo service nginx restart
 sudo service nginx status
 ```
+
+*** Move files (web app, certificate, and key) to the appropriate folders ***
+
+### verify accessibility by visiting the site:
+
+[color.cornidez.com](https://www.color.cornidez.com)
 
 
 
