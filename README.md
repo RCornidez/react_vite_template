@@ -1,9 +1,20 @@
 # React template using Vite
 
 ## How to run in development
-Install Node.js using [NVM](https://github.com/nvm-sh/nvm#installing-and-updating) and Node Package Manager using apt-get:
+Install Node.js using [NVM](https://github.com/nvm-sh/nvm#installing-and-updating) and Node Package
+Manager using apt-get:
 ```
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+```
+*** Exit and log back into server ***
+### Install and verify LTS version is used for Node
+```
+nvm install --lts
+node -v
+```
+
+
+```
 sudo apt-get install npm
 ```
 
